@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
-//Import the model (TBA) to use its database functions
+//Import the model (method.js) to use its database functions
+var method = require("../models/method.js");
 
 	//router.get "method of the day"
 	//router.get "next method"
