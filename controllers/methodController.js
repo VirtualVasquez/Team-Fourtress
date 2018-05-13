@@ -2,7 +2,11 @@ var express = require("express");
 var router = express.Router();
 
 //Import the model (method.js) to use its database functions
-var method = require("../models/method.js");
+var methods = require("../models/method.js");
+var users =	require("../models/method.js");
+var comments = require("../models/method.js");
+var replies =require("../models/method.js");
+
 
 	//router.get "method of the day"
 	//router.get "next method"
@@ -19,4 +23,7 @@ var method = require("../models/method.js");
 
 	//router.delete "delete comment"
 	//router.delete "delete reply"
+
+// Export routes for server.js to use.
+module.exports = router;
 
