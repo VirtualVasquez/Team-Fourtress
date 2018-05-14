@@ -7,9 +7,12 @@ var connection = requiire ("../config/connection.js");
 
 //Helper function to vonert object key/value pairs to SQL syntax from CatsApp if necessary
 
-//Object for all our SQL statement functions.
+//Object for all our SQL statement functions. Can apply to each table
 var orm = {
 	all: function(){
+
+	},
+	randomOne: function(){
 
 	},
 	readOne: function(){
