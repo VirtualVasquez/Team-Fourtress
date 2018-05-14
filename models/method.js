@@ -2,7 +2,7 @@ var orm = require("../config.orm.js"); //The ORM is being contructed by Mario; p
 
 //Needs to be one model variable set up for each table that needs to be implemented in this project.
 
-//Methods stored in Database from the scraper
+//Actions on the Method Table in the Database
 var methods = {
 	randomOne: function(cb){
 		orm.randomOne("methods", function(res){
@@ -24,25 +24,29 @@ var methods = {
 	},	
 };
 
-//Identifcation of individual users
+//Actions on the users table
 var users = {
-	all: function(cb) {
-		orm.all("comments", function(res) {
-			cb(res);
-		});
+	readOne: function(cb){
+		orm.readOne("users", col, val, function(res){
+		//return the method and its values that is searched
+		})
 	},
+
 };
 
-//Comments logged into any given Method
+//actions on the comments table
 var comments = {
 	all: function(PSEUDOCODE){
-
+		//not sure how to format this
+		//
 	}
 };
 
-//Replies attached to any comment
+//actions on the replies table
 var replies = {
+	all: function(PSEUDOCODE){
 
+	},
 };
 
 
