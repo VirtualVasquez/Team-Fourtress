@@ -76,22 +76,52 @@ var orm = {
     	queryString += ") ";
     	queryString += "VALUES (";
     	queryString += vals.length;//printQuestionMarks(vals.length)
-    	queryString += ") ";		
+    	queryString += ") ";
 
+    	console.log(queryString);
+
+    	connection.query(queryString, vals, function(err, result) {
+    		if (err) {
+    			throw err;
+    		}
+
+    		cb(result);
+    	});		
 	},
+
 	//used to update boolean values (like/dislike) or user comments/replies
-	update: function(table, objColVals, condition, cb) {
+	//`condition` might not be the right term/argument to use
+	update: function(table, objColVals, statement, cb) {
 		var queryString = "UPDATE " + table;
 
 		queryString += " SET ";
 		queryString += objColVals; //might need CatsApp, rewrite as ```objToSql(objColVals)```
 		queryString += " WHERE ";
-		queryString += condition;
+		queryString += statement;
 
 		console.log(queryString);
-		conection.query(queryString, function(err, result))
+		conection.query(queryString, function(err, result){
+			if (err) {
+				throw err;
+			}
+
+			cb(result);
+		});
 	},
-	delete: function(){
+	//delete a comment or reply, being passed through as the argument `statement`
+	//probably a better way to write that?
+	delete: function(table, statement, cb){
+		var queryString = "DELETE FROM " +  table;
+		queryString += " WHERE ";
+		queryString += statement;
+
+		connection.query(queryString, function (err, result) {
+			if (err) {
+				throw err;
+			}
+
+			cb(result);
+		});
 
 	},
 };

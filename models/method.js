@@ -4,49 +4,96 @@ var orm = require("../config.orm.js"); //The ORM is being contructed by Mario; p
 
 //Actions on the Method Table in the Database
 var methods = {
-	randomOne: function(cb){
-		orm.randomOne("methods", function(res){
-		//Randomly select a method on document ready.
-		//Also when next button is pressed
+	//give back all the methods in the database
+	all: function(cb) {
+		orm.all("methods", function(res) {
+			cb(res);
 		});
 	},
-	readOne: function(cb){
-		orm.readOne("methods", col, val, function(res){
-		//return the method and its values that is searched
-		})
-	},
-	update: function(objColVals, condition, cb){
-		orm.update("methods", objColVals, status, function(res){
-		//should be used for like and dislike column
-		//"status" should apply to changing the boolean value	
+	//give back one method in the database
+	readOne: function(cols, vals, cb){
+		orm.readOne("methods", cols, vals function(res){
 			cb(res);
-		}); 
-	},	
+		});
+	},
 };
 
 //Actions on the users table
 var users = {
-	readOne: function(cb){
-		orm.readOne("users", col, val, function(res){
-		//return the method and its values that is searched
-		})
+	//use to verify login?
+	readOne: function(cols, vals, cb){
+		orm.readOne("users", cols, vals function(res){
+			cb(res);
+		});
 	},
+	create: function(cols, vals, cb) {
+    orm.create("users", cols, vals, function(res) {
+      cb(res);
+    });
+  	},
+	//use to create a new member login?
 
 };
 
 //actions on the comments table
 var comments = {
-	all: function(PSEUDOCODE){
-		//not sure how to format this
-		//
-	}
+	//How to narrow it down to JUST those of ONE Method?
+	all: function(cb) {
+		orm.all("comments", function(res) {
+			cb(res);
+		});
+	},
+	//Use when creating a comment on a method
+	create: function(cols, vals, cb) {
+    orm.create("comments", cols, vals, function(res) {
+      cb(res);
+    });
+  	},
+  	update: function(objColVals, statement, cb) {
+    orm.update("comments", objColVals, statement, function(res) {
+      cb(res);
+    });
+  	},  	
+  	//Do we need this one?
+  	readOne: function(cols, vals, cb){
+		orm.readOne("comments", cols, vals function(res){
+			cb(res);
+		});
+	},
+	//Delete any comment belonging to a user
+	delete: function(statement, cb) {
+    orm.delete("comments", statement, function(res) {
+      cb(res);
+    });
+  	}
 };
 
 //actions on the replies table
 var replies = {
-	all: function(PSEUDOCODE){
-
+	//give back all the replies in the database
+	//how to narrow it down to just those under one comment?
+	all: function(cb) {
+		orm.all("replies", function(res) {
+			cb(res);
+		});
 	},
+	//Use when creating a reply on a comment
+	create: function(cols, vals, cb) {
+    orm.create("replies", cols, vals, function(res) {
+      cb(res);
+    });
+  	},
+  	update: function(objColVals, statement, cb) {
+    orm.update("replies", objColVals, statement, function(res) {
+      cb(res);
+    });
+  	},  
+  	//Delete any replies belonging to a user
+  	delete: function(statement, cb) {
+    orm.delete("replies", statement, function(res) {
+      cb(res);
+    });
+  	}
 };
 
 

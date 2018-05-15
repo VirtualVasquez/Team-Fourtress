@@ -10,9 +10,9 @@ var replies =require("../models/method.js");
 //methodController
 //==============================================
 	//router.get "method of the day" (random)
-		//Could also be used to random get ANOTHER method
+		//Could also be used to random get ANOTHER method, but val must be random
 	router.get("/", function(req,res) {
-		methods.randomOne(function(data) {
+		methods.readOne(function(data) {
 			var hbsObject = {
 				methods: //math.random???
 			};
@@ -21,6 +21,7 @@ var replies =require("../models/method.js");
 		});
 	});
 	//router.get "searched method"
+	f
 	//router.post "single like"
 	//router.post "single dislike"
 //==============================================
