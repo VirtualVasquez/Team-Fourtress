@@ -9,11 +9,33 @@ var connection = requiire ("../config/connection.js");
 
 //Object for all our SQL statement functions. Can apply to each table
 var orm = {
-	all: function(){
-
+	all: function(tableInput, cb) {
+		var queryString = "SELECT * FROM " + tableInput + ";";
+		connection.query(queryString, function(err, result) {
+			if (err) {
+				throw err;
+			}
+			cb(result);
+		})
 	},
-	randomOne: function(){
+	randomOne: function(table, cols, vals, cb){
+		var queryString = "SELECT FROM " + table;
 
+		queryString += " (";
+		queryString += cols.toString();
+		queryString += ") ";
+		queryString += "VALUES (";
+		queryString += vals.length;
+		queryString += ") ";
+
+		console.log(queryString);
+
+		connection.query(queryString, vals, function(err, result) {
+			if (err) {
+				throw.err;
+			}
+			cb(result);
+		});
 	},
 	readOne: function(){
 
