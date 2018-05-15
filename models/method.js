@@ -99,7 +99,9 @@ var replies = {
 
 //Export the database functions of each table for the controller (methodsController.js).
 
-module.exports = methods;
-module.exports = users;
-module.exports = comments;
-module.exports = replies;
+module.exports = {
+    methods: methods,
+    users: users,
+    comments: comments,
+    replies: replies,
+}

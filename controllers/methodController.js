@@ -1,27 +1,20 @@
 var express = require("express");
 var router = express.Router();
-
+const connection = require('../config/connection');
 //Import the model (method.js) to use its database functions
-var methods = require("../models/method.js");
-var users =	require("../models/method.js");
-var comments = require("../models/method.js");
-var replies =require("../models/method.js");
+// var methods = require("../models/method.js");
+// var users =	require("../models/method.js");
+// var comments = require("../models/method.js");
+// var replies =require("../models/method.js");
 
 //methodController
 //==============================================
 	//router.get "method of the day" (random)
 		//Could also be used to random get ANOTHER method, but val must be random
 	router.get("/", function(req,res) {
-		methods.readOne(function(data) {
-			var hbsObject = {
-				methods: //math.random???
-			};
-			console.log(hbsObject);
-			res.render("index", hbsObject);
-		});
+		
 	});
 	//router.get "searched method"
-	f
 	//router.post "single like"
 	//router.post "single dislike"
 //==============================================
