@@ -49,7 +49,9 @@ const orm = require('../config/orm');
 	router.get("/methods/:request", function(req,res) {
 		switch (req.params.request) {
 			case 'count':
-				orm.countEntries('methods');
+				orm.countEntries('methods').then(result=>{
+					res.json(result[0]);
+				});
 
 		}
 	});
