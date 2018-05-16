@@ -41,30 +41,63 @@ var orm = {
 	//countEntries
 	//counts how many entries in the table provided
 	countEntries: (table)=>{
-		var queryString = "SELECT COUNT(*) as 'count' FROM ??;";
-		connection.query(queryString, table, function(err, result) {
-			if (err) {
-				console.log(err);
-			}
-			console.log(result);
-		})
+		return new Promise((resolve,reject)=>{ 
+			var queryString = "SELECT COUNT(*) as 'count' FROM ??;";
+			connection.query(queryString, table, function(err, result) {
+				if (err) {
+					reject(err);
+				}
+
+				resolve(result);
+			});
+		});
 	},
 
 	//give this the number of entries in our table
-	selectRandom: (rows)=>{
-		return Math.floor(Math.random() * (rows+1));
+	selectRandomId: (num)=>{
+		return Math.floor(Math.random() * (num + 1));
 	},
 
-	// //select and retur
-	// all: function(tableInput, cb) {
-	// 	var queryString = "SELECT * FROM " + tableInput + ";";
-	// 	connection.query(queryString, function(err, result) {
-	// 		if (err) {
-	// 			throw err;
-	// 		}
-	// 		cb(result);
-	// 	})
-	// },
+	// //select and return all entries in a table in jason
+	selectAll: function(table) {
+		var queryString = "SELECT * FROM ??;";
+		return new Promise ((resolve,reject)=>{
+			connection.query(queryString, table, function(err, result) {
+			if (err) {
+				reject(err);
+			}
+			resolve(result);
+			});
+		});
+	},
+
+	//selects and returns one method
+	selectOne: function(requestObj){
+		var queryString = "SELECT * FROM methods WHERE ?;";
+		return new Promise ((resolve,reject)=>{
+			connection.query(queryString, requestObj, function(err, result) {
+			if (err) {
+				reject(err);
+			}
+			resolve(result);
+			});
+		});
+
+	},
+
+	//selects a random method
+	random: ()=>{
+
+		var x;
+
+		orm.countEntries('methods').then(result=>{
+			x = result;
+		});
+
+		console.log(x);
+		
+
+	},
 	// //readOne can be used as "get Random" if `vals` is randomly selected
 	// readOne: function(table, cols, vals, cb){
 	// 	var queryString = "SELECT FROM " + table;
