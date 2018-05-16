@@ -9,12 +9,23 @@ var orm = {
 		var queryString = "SELECT COUNT(*) as 'count' FROM ??;";
 		
 		return new Promise ((resolve,reject)=>{
-			connection.query(queryString, table, function(err, result) {
+			//notice when using connection pool, connection is a function
+			//this function takes a function argument with error and the actual connection
+			//use this as reference for all connections to DB for ur function
+			//**NOTEL con.release 7 lines down is SUPER IMPORTANT
+			//this lets go of the connection and returns it to the pool
+			connection((err,con)=>{
 				if (err) {
 					reject(err);
 				}
+				con.query(queryString, table, function(err, result) {
+				
+				con.release();
 				resolve(result);
-			});
+				});
+
+
+			})
 		});
 	},
 
