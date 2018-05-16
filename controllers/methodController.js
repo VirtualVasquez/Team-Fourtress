@@ -47,43 +47,12 @@ const orm = require('../config/orm');
 //API
 //==============================================
 	router.get("/methods/:request", function(req,res) {
-		// console.log(req.params)
 		switch (req.params.request) {
 			case 'count':
-				//orm.countEntries gives back number of entries... as a promise
-				orm.countEntries('methods')
-				.then(result=>{
-					res.json(result);
-				})
-				.catch(err=>console.log(err));
-
-				break;
-
-			case 'all':
-				orm.selectAll('methods')
-				.then(result=>{
-					res.json(result);
-				})
-				.catch(err=>console.log(err));
-
-				break;
-
-			case 'random':
-				orm.random('methods');
-				
+				orm.countEntries('methods');
 
 		}
 	});
-
-	router.get("/methods/id/:request", function(req,res) {
-		orm.selectOne({'id': req.params.request})
-		.then(result=>{
-			// console.log(result);
-		})
-		.catch(err=>console.log(err));
-	});
-
-
 
 
 //==============================================
