@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const connection = require('../config/connection');
+const orm = require('../config/orm');
 //Import the model (method.js) to use its database functions
 // var methods = require("../models/method.js");
 // var users =	require("../models/method.js");
@@ -12,11 +13,9 @@ const connection = require('../config/connection');
 	//router.get "method of the day" (random)
 		//Could also be used to random get ANOTHER method, but val must be random
 	router.get("/", function(req,res) {
-		
+		res.send('main page');
 	});
-	//router.get "searched method"
-	//router.post "single like"
-	//router.post "single dislike"
+
 //==============================================
 
 
@@ -44,6 +43,19 @@ const connection = require('../config/connection');
 	//router.delete "delete reply"
 //==============================================
 
+
+//API
+//==============================================
+	router.get("/methods/:request", function(req,res) {
+		switch (req.params.request) {
+			case 'count':
+				orm.countEntries('methods');
+
+		}
+	});
+
+
+//==============================================
 
 // Export routes for server.js to use.
 module.exports = router;

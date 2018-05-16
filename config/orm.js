@@ -1,5 +1,5 @@
 //Import MySQL connection
-var connection = requiire ("../config/connection.js");
+var connection = require("../config/connection.js");
 //================================================================================
 //insert helper function for SQL syntax from CatsApp if failure to configure ORM
 // function printQuestionMarks(num) {
@@ -37,93 +37,111 @@ var connection = requiire ("../config/connection.js");
 //================================================================================
 //Object for all our SQL statement functions. Can apply to each table
 var orm = {
-	//can be used for methods, comments, and replies as necessary
-	all: function(tableInput, cb) {
-		var queryString = "SELECT * FROM " + tableInput + ";";
-		connection.query(queryString, function(err, result) {
+
+	//countEntries
+	//counts how many entries in the table provided
+	countEntries: (table)=>{
+		var queryString = "SELECT COUNT(*) as 'count' FROM ??;";
+		connection.query(queryString, table, function(err, result) {
 			if (err) {
-				throw err;
+				console.log(err);
 			}
-			cb(result);
+			console.log(result);
 		})
 	},
-	//readOne can be used as "get Random" if `vals` is randomly selected
-	readOne: function(table, cols, vals, cb){
-		var queryString = "SELECT FROM " + table;
 
-		queryString += " (";
-		queryString += cols.toString();
-		queryString += ") ";
-		queryString += "VALUES (";
-		queryString += vals.length;
-		queryString += ") ";
-
-		console.log(queryString);
-
-		connection.query(queryString, vals, function(err, result) {
-			if (err) {
-				throw.err;
-			}
-			cb(result);
-		});
-	},
-	//this should end up getting used for comments, replies, and new users
-	create: function(table, cols, vals, cb){
-		var queryString = "INSERT INTO " + table;
-
-    	queryString += " (";
-    	queryString += cols.toString();
-    	queryString += ") ";
-    	queryString += "VALUES (";
-    	queryString += vals.length;//printQuestionMarks(vals.length)
-    	queryString += ") ";
-
-    	console.log(queryString);
-
-    	connection.query(queryString, vals, function(err, result) {
-    		if (err) {
-    			throw err;
-    		}
-
-    		cb(result);
-    	});		
+	//give this the number of entries in our table
+	selectRandom: (rows)=>{
+		return Math.floor(Math.random() * (rows+1));
 	},
 
-	//used to update boolean values (like/dislike) or user comments/replies
-	//`condition` might not be the right term/argument to use
-	update: function(table, objColVals, statement, cb) {
-		var queryString = "UPDATE " + table;
+	// //select and retur
+	// all: function(tableInput, cb) {
+	// 	var queryString = "SELECT * FROM " + tableInput + ";";
+	// 	connection.query(queryString, function(err, result) {
+	// 		if (err) {
+	// 			throw err;
+	// 		}
+	// 		cb(result);
+	// 	})
+	// },
+	// //readOne can be used as "get Random" if `vals` is randomly selected
+	// readOne: function(table, cols, vals, cb){
+	// 	var queryString = "SELECT FROM " + table;
 
-		queryString += " SET ";
-		queryString += objColVals; //might need CatsApp, rewrite as ```objToSql(objColVals)```
-		queryString += " WHERE ";
-		queryString += statement;
+	// 	queryString += " (";
+	// 	queryString += cols.toString();
+	// 	queryString += ") ";
+	// 	queryString += "VALUES (";
+	// 	queryString += vals.length;
+	// 	queryString += ") ";
 
-		console.log(queryString);
-		conection.query(queryString, function(err, result){
-			if (err) {
-				throw err;
-			}
+	// 	console.log(queryString);
 
-			cb(result);
-		});
-	},
-	//delete a comment or reply, being passed through as the argument `statement`
-	//probably a better way to write that?
-	delete: function(table, statement, cb){
-		var queryString = "DELETE FROM " +  table;
-		queryString += " WHERE ";
-		queryString += statement;
+	// 	connection.query(queryString, vals, function(err, result) {
+	// 		if (err) {
+	// 			throw.err;
+	// 		}
+	// 		cb(result);
+	// 	});
+	// },
+	// //this should end up getting used for comments, replies, and new users
+	// create: function(table, cols, vals, cb){
+	// 	var queryString = "INSERT INTO " + table;
 
-		connection.query(queryString, function (err, result) {
-			if (err) {
-				throw err;
-			}
+ //    	queryString += " (";
+ //    	queryString += cols.toString();
+ //    	queryString += ") ";
+ //    	queryString += "VALUES (";
+ //    	queryString += vals.length;//printQuestionMarks(vals.length)
+ //    	queryString += ") ";
 
-			cb(result);
-		});
+ //    	console.log(queryString);
 
-	},
+ //    	connection.query(queryString, vals, function(err, result) {
+ //    		if (err) {
+ //    			throw err;
+ //    		}
+
+ //    		cb(result);
+ //    	});		
+	// },
+
+	// //used to update boolean values (like/dislike) or user comments/replies
+	// //`condition` might not be the right term/argument to use
+	// update: function(table, objColVals, statement, cb) {
+	// 	var queryString = "UPDATE " + table;
+
+	// 	queryString += " SET ";
+	// 	queryString += objColVals; //might need CatsApp, rewrite as ```objToSql(objColVals)```
+	// 	queryString += " WHERE ";
+	// 	queryString += statement;
+
+	// 	console.log(queryString);
+	// 	conection.query(queryString, function(err, result){
+	// 		if (err) {
+	// 			throw err;
+	// 		}
+
+	// 		cb(result);
+	// 	});
+	// },
+	// //delete a comment or reply, being passed through as the argument `statement`
+	// //probably a better way to write that?
+	// delete: function(table, statement, cb){
+	// 	var queryString = "DELETE FROM " +  table;
+	// 	queryString += " WHERE ";
+	// 	queryString += statement;
+
+	// 	connection.query(queryString, function (err, result) {
+	// 		if (err) {
+	// 			throw err;
+	// 		}
+
+	// 		cb(result);
+	// 	});
+
+	// },
 };
 
 
