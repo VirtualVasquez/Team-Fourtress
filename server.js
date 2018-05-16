@@ -1,7 +1,7 @@
 // // this is my branch
 var express = require("express");
 var bodyParser = require("body-parser");
-var routes = require("./controllers/methodController.js");
+var routes = require("./controllers/mainController.js");
 
 var PORT = process.env.PORT || 8080;
 

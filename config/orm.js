@@ -5,9 +5,12 @@ var orm = {
 
 	//countEntries
 	//counts how many entries in the table provided
+	//this returns a promise
+	//test will check return is a num
 	countEntries: (table)=>{
 		var queryString = "SELECT COUNT(*) as 'count' FROM ??;";
 		
+
 		return new Promise ((resolve,reject)=>{
 			//notice when using connection pool, connection is a function
 			//this function takes a function argument with error and the actual connection
