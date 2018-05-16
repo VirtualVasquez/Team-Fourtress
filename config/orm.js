@@ -40,13 +40,14 @@ var orm = {
 
 	//countEntries
 	//counts how many entries in the table provided
-	countEntries: (table)=>{
+	countEntries: (table, cb)=>{
 		var queryString = "SELECT COUNT(*) as 'count' FROM ??;";
 		connection.query(queryString, table, function(err, result) {
 			if (err) {
 				console.log(err);
 			}
 			console.log(result);
+			cb(result);
 		})
 	},
 

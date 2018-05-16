@@ -1,7 +1,6 @@
-//Mob coding from 5/12/2018 in class. Using as a reference for later
 var request = require("supertest");
-// var server = require("../server");
-// var assert = require("assert");
+var server = require("../server");
+var assert = require("assert");
 
 describe("Author Routes", function() {
     // var server;

@@ -1,5 +1,3 @@
-var express = require("express");
-var router = express.Router();
 const connection = require('../config/connection');
 const orm = require('../config/orm');
 //Import the model (method.js) to use its database functions
@@ -7,14 +5,27 @@ const orm = require('../config/orm');
 // var users =	require("../models/method.js");
 // var comments = require("../models/method.js");
 // var replies =require("../models/method.js");
+module.exports = function(router){
+	router.get("/", function(req,res) {
+		res.send('main page');
+	});
+	router.get("/methods/:request", function(req,res) {
+		if (req.params.request === 'count') {
+				orm.countEntries('methods', (result)=>res.end(JSON.stringify(result)));
 
+
+		} else{
+			res.end("Just testing");
+		}
+		
+	});
+	return router;
+}
 //methodController
 //==============================================
 	//router.get "method of the day" (random)
 		//Could also be used to random get ANOTHER method, but val must be random
-	router.get("/", function(req,res) {
-		res.send('main page');
-	});
+
 
 //==============================================
 
@@ -46,17 +57,11 @@ const orm = require('../config/orm');
 
 //API
 //==============================================
-	router.get("/methods/:request", function(req,res) {
-		switch (req.params.request) {
-			case 'count':
-				orm.countEntries('methods');
 
-		}
-	});
 
 
 //==============================================
 
-// Export routes for server.js to use.
-module.exports = router;
+// // Export routes for server.js to use.
+// module.exports = router;
 
