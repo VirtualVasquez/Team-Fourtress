@@ -12,20 +12,18 @@ var method = require("../models/method");
 //==============================================
 	//router.get "method of the day" (random)
 		//Could also be used to random get ANOTHER method, but val must be random
-	router.get("/", function(req,res) {
-		res.send('main page');
-	});
-
+	// router.get("/", function(req,res) {
+	// 	res.render('home');
+	// });
+	router.get('/', (req,res)=>{
+		res.render('home');
+	})
 
 //API
 //==============================================
 	router.get("/methods/:request", function(req,res) {
 		
-		if(req.params.request === 'count'){
-			method.count('methods').then(result=>{
-				res.json(result);
-			});
-		}
+		
 		
 	});
 

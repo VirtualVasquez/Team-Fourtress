@@ -1,7 +1,9 @@
 // // this is my branch
-var express = require("express");
+const express = require("express");
 var bodyParser = require("body-parser");
-var routes = require("./controllers/mainController.js");
+var routes = require("./controllers/mainController");
+const authRoutes = require("./controllers/auth-routes");
+const passportSetup = require('./config/passport-setup');
 
 var PORT = process.env.PORT || 8080;
 
@@ -15,13 +17,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
-//pulls our routes in to express;
-app.use(routes);
+
 // // Set Handlebars.
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+
+//pulls our routes in to express;
+app.use(routes);
+app.use('/auth', authRoutes);
+
+
+// app.get('/', (req,res)=>{
+//     res.render();
+// });
+
+
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {
