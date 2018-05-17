@@ -5,14 +5,9 @@ html {
 
 body {
   height: 100%;
-  width: 100%;
   vertical-align: bottom;
-  background: url("../images/crop_maze.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  
+  background-image: url("../images/crop_maze.jpg");
+  background-repeat: no-repeat;
 }
 
 nav {
@@ -20,19 +15,14 @@ nav {
  padding: 0 0 0 15px;
 }
 
-
-
 nav .brand-logo {
     position: absolute;
-    color: #BF982C;
+    color: #fff;
     display: inline-block;
-    font-size: 6rem;
-    padding: 10px 0 0 36%;
+    font-size: 4rem;
+    padding: 0;
 }
 
-#pages {
-  padding: 20px 0 0 0;
-}
 
 /*---------------------------------------------------------------*/
 
@@ -130,8 +120,8 @@ main {
 /*---------------footer-----------------------*/
 
 footer{
-  background-color: rgba(0, 0, 0, 0);
-  position: fixed;;
+  background-color: #BF982C;
+  vertical-align: baseline;
   bottom: 0;
   color: white;
   width: 100%;
