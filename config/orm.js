@@ -19,21 +19,30 @@ var orm = {
 					reject(err);
 				}
 				con.query(queryString, table, function(err, result) {
-				
 				con.release();
 				resolve(result);
 				});
-
-
 			})
 		});
 	},
-
 	//give this the number of entries in our table
 	//and it will select and return a random number between 1 and that
 	//this should not return a promise
-	selectRandom: (rows)=>{
-		return Math.floor(Math.random() * (rows+1));
+	selectRandom: (tableInput, colToSearch, valofCol)=>{ //argument was row previously
+		var queryString = "SELECT * FROM ?? WHERE ?? = ? ";
+		var valofCol = Math.floor((Math.random() * 365) +1); 
+		//#s set for Method table only, may not be appropriate written in the ORM
+		connection((err,con))=>{
+			if (err) {
+				reject(err);
+			}
+			con.query(queryString, [tableInput, colToSearch, valofCol],
+				function(err, result){
+					if (err) throw err;
+					console.log(result);
+				});
+		},
+
 	},
 
 	//give this an id
