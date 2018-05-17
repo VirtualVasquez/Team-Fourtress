@@ -9,7 +9,8 @@ passport.use(
         clientSecret: process.env.GH_SECRET,
         callbackURL: process.env.GH_CB
     }, (accessToken, refreshToken, profile, done)=>{
-        console.log(profile);
+        var aUser = new User(profile.displayName, profile.username, profile.id, profile.profileUrl, profile._json.email);
+        console.log(aUser);
         console.log('passport callback fired');
     })
 )
