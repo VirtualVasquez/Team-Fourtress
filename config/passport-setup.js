@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GithubStrategy = require('passport-github');
+const User = require('../models/user-model');
 
 passport.use(
     new GithubStrategy({
@@ -9,6 +10,6 @@ passport.use(
         callbackURL: process.env.GH_CB
     }, (accessToken, refreshToken, profile, done)=>{
         console.log(profile);
-        console.log('passport callback fired')
+        console.log('passport callback fired');
     })
 )
