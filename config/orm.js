@@ -169,6 +169,8 @@ var orm = {
 	//test will check result is a number, and if given an invalid id, like 45678, returns false
 	//MELVIN'S NOTE: getLikesForMethod does the same thing, of which is already a redundant function
 		//in it of itself. 
+
+//REDUNDANT(?)vvv==============================================================================		
 	getDislikesForMethod: (dislikeVal, dislikeCol, tableInput, col, val)=>{
 		var queryString = "SELECT ? OF ?? FROM ?? WHERE ?? = ? ";
 		return new Promise ((resolve,reject)=>{
@@ -184,10 +186,16 @@ var orm = {
 			})
 		});		
 	},
+//REDUNDANT(?)^^^==============================================================================
 
 	//adds one to the current value of likes for this method, in the db
 	//this should return a promise
 	//test for result is number, false if invalid id
+
+	//MELVIN'S NOTE: think Facebook. One user like, total count goes up one. user unlikes,
+	//total count goes down one. Should "update" like CatsApp Sleepy or Awake (boolean), not
+	//"add cat", where you create a new cat. Therefore, only one function should exist.
+	//```updateStatusForMethod:```, where the argument that change is column "like" or "dislike"
 	postLikeForMethod: methodId=>{
 
 	},
