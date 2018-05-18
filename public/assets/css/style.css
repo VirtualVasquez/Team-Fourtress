@@ -1,6 +1,8 @@
 html {
   height: 100%;
   vertical-align: bottom;
+  overflow-y: scroll;
+  overflow-x:  hidden;
 }
 
 body {
@@ -12,7 +14,8 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  
+  overflow-y: scroll;
+  overflow-x:  hidden;
 }
 
 nav {
@@ -34,7 +37,18 @@ nav .brand-logo {
   padding: 20px 0 0 0;
 }
 
+h1 {
+    font-size: 3.2rem;
+    line-height: 110%;
+    margin: 2.8rem 0 1.68rem 0;
+}
+
 /*---------------------------------------------------------------*/
+
+#general, #syntax, #description, #comments, #examples{
+  position: relative;
+  opacity: 100;
+} 
 
 #command-row {
  /*height: 100%;*/
@@ -122,6 +136,7 @@ main {
   font-size: 18px;
   margin: 0 30px 0 0;
   position: fixed;
+  z-index: 99;
 }
 
 
