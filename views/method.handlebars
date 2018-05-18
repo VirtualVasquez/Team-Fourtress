@@ -11,6 +11,7 @@
           </div>
           
           <div class = "col s4 m4 l4">
+            {{!-- current object.name --}}
             <h1 class="method-title">{{name}}(&nbsp;&nbsp;)</h1>
           </div>
           
@@ -29,17 +30,9 @@
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
                 <span class="card-title">General</span>
+                {{!-- current object.category --}}
                 <p>Category: {{category}}</p>
-                {{#if parameters}}
-                    <p>Arguments/Params:</p>
-                    <ul>
-                      {{#each parameters}}
-                         <li>{{this.name}}</li>
-                         <p>{{this.description}}</p> 
-                      {{/each}}
-                    <ul>
-                {{/if}}
-                <p>arguments it takes: <span style="font-style: italic; color: orange">error, request,response</span></p>
+                
               </div>
             </div>
           </div>
@@ -50,7 +43,27 @@
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
                 <span class="card-title">Syntax</span>
-                <p>Look at our syntax</p>
+                <p>{{syntax}}</p>
+                <hr>
+
+                {{!-- if the .parameters inside the object were passing hbs exists
+                    handle bars willl only execute this block if it is not empty, null, or ''.
+
+                 --}}
+                {{#if parameters}}
+                    <p>Arguments/Params:</p>
+
+                    <ul>
+                      {{!-- for each element in the parameters array: --}}
+                      {{#each parameters}}
+                      {{!-- giveThisAnIdTo style it in ../public/assets/css/style.css
+                            or a class... example #xy
+                       --}}
+                         <li id='#xy'>{{this.name}}</li>
+                         <p>{{this.description}}</p> 
+                      {{/each}}
+                    <ul>
+                {{/if}}
               </div>
             </div>
           </div>
