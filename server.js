@@ -5,6 +5,10 @@ var routes = require("./controllers/mainController");
 const authRoutes = require("./controllers/auth-routes");
 const passportSetup = require('./config/passport-setup');
 
+require('dotenv').config();
+// Requiring our models for syncing
+var db = require("./models");
+
 var PORT = process.env.PORT || 8080;
 
 var app = express();
@@ -26,7 +30,7 @@ app.set("view engine", "handlebars");
 
 
 //pulls our routes in to express;
-app.use(routes);
+app.use('', routes);
 app.use('/auth', authRoutes);
 
 
@@ -35,10 +39,14 @@ app.use('/auth', authRoutes);
 // });
 
 
-
-// Start our server so that it can begin listening to client requests.
-app.listen(PORT, function() {
+db.sequelize.sync({ force: false }).then(function() {
+  // Start our server so that it can begin listening to client requests.
+    app.listen(PORT, function() {
   // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+    console.log("Server listening on: http://localhost:" + PORT);
 });
+});
+
+
+
 
