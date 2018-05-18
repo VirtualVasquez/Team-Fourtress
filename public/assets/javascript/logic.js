@@ -12,3 +12,21 @@ $('#command').focusout(function(){
     'font-size': '20px'
   });
 });
+
+$(function() {
+	$("#next").click(function(){
+		$("#card-wrapper > div").animate({
+		
+			"right":"-100vw"
+		}, 1000, "linear", function(){
+			
+			$("#card-wrapper > div").animate({
+			"right": "0vw"
+			}, 1000);
+		
+	});
+
+	})
+});
+
+
