@@ -8,8 +8,9 @@ const db = require('../models')
 
 		db.method.findAll().then(result=>{
 			//select a random one from the result and send
-			console.log(result[Math.floor((Math.random() * (result.length + 1)))]);
-			res.render('method', result[Math.floor((Math.random() * (result.length + 1)))]);
+			var selected = result[Math.floor((Math.random() * (result.length + 1)))];
+			selected.parameters = JSON.parse(selected.parameters);
+			res.render('method', selected.dataValues);
 		})
 		.catch(e=>{
 			if(e) throw e;
@@ -20,9 +21,8 @@ const db = require('../models')
 	router.get('/search/:cat/:name', (req,res)=>{
 
 		db.method.findAll().then(result=>{
-			//select a random one from the result and send
-			console.log(result[Math.floor((Math.random() * (result.length + 1)))]);
-			res.render('method', result[Math.floor((Math.random() * (result.length + 1)))]);
+
+			res.render('method', selected);
 		})
 		.catch(e=>{
 			if(e) throw e;
