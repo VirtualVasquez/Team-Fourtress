@@ -31,10 +31,16 @@ describe("Method Routes", function() {
           "parameters":"", "returns":"", "examples":"", "tags":"",
           "likes":"","dislikes":"", "id":"",}, done);
     });
-    it("Adds a new author and responds with the json for the new author", function(done) {
-        request(server).post("/PSEUDOROUTE", {name:"Yamil"})
+    it("Update the like status of the method with the first ID", function(done) {
+        request(server).update("/api/methods/1", {likes: true})
         .set("Accept", "application/json")
         .expect(200)
-        .expect({ name: 'Yamil' }, done);
+        .expect({ likes: true }, done);
+    });
+    it("Update the dislike status of the method with the first ID", function(done) {
+        request(server).update("/api/methods/1", {dislikes: true})
+        .set("Accept", "application/json")
+        .expect(200)
+        .expect({ dislikes: true }, done);
     });
 });
