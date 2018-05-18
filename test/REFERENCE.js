@@ -4,13 +4,7 @@ var request = require("supertest");
 // var assert = require("assert");
 
 describe("Author Routes", function() {
-    // var server;
-    // beforeEach(function(){
-    //     server = require("../server");
-    // });
-    // afterEach(function(){
-    //     server.close();
-    // });
+
     it("Responds to '/'", function(done) {
         request(server).get("/").expect(200, done);
     });

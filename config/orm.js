@@ -36,29 +36,25 @@ var orm = {
 //REDUNDANT(?)vvv==============================================================================
 	//MELVIN'S NOTE: 'selectMethodById' does the same thing. We just need to pass
 		//Math.random into in the model file when in use.
-	selectRandom: (tableInput, col, randomID)=>{ //argument was row previously
-	var queryString = "SELECT * FROM ?? WHERE ?? = ? ";
-		return new Promise ((resolve,reject)=>{
-			function randomID = Math.floor((Math.random() * 365) +1); 
-			//randomID set for Method table only, may not be appropriate written in the ORM
-			connection((err,con)=>{
-				if (err) {
-					reject(err);
-				}
-				con.query(queryString, [tableInput, col, randomID()],
-					function(err, result) {
-						if (err) throw err;
-						console.log(result);
-					});
-			});
-		});
-	},
+	// selectRandom: (tableInput, col, randomID)=>{ //argument was row previously
+	// var queryString = "SELECT * FROM ?? WHERE ?? = ? ";
+	// 	return new Promise ((resolve,reject)=>{
+	// 		function randomID = Math.floor((Math.random() * 365) +1); 
+	// 		//randomID set for Method table only, may not be appropriate written in the ORM
+	// 		connection((err,con)=>{
+	// 			if (err) {
+	// 				reject(err);
+	// 			}
+	// 			con.query(queryString, [tableInput, col, randomID()],
+	// 				function(err, result) {
+	// 					if (err) throw err;
+	// 					console.log(result);
+	// 				});
+	// 		});
+	// 	});
+	// },
 //REDUNDANT(?)^^^==============================================================================
 
-	//give this an id
-	//it will return an object
-	//test will look for returnedObject.id === idGiven
-	//this should return a promise
 	//MELVIN'S NOTE: This should work just like selectRandom, but with manual entry of ID
 		//ALSO: shouldn't this be able to apply to category selection?
 	selectMethodById: (tableInput, col, val)=>{
@@ -118,28 +114,28 @@ var orm = {
 //REDUNDANT(?)^^^==============================================================================
 
 	//this will select a method by its name, that belongs to a category
-	//this returns a string of objects.
+	//this returns an array of objects.
 	//test will check that result[0].name === name(argument);
 	//this should return a promise, that resolves with the full result.
 
-		//MELVIN'S NOTE: Why not search by name from the beginning? Fewer steps that way.
-			//rework "selectMethodById" -> "select". Will get any val from any column.
-				//regardless, code below is written as asked
-	selectMethodByNameInCategory: (nameVal, tableInput, col, val)=>{
-		var queryString = "SELECT ? FROM ?? WHERE ?? = ? ";
-		return new Promise ((resolve,reject)=>{
-			connection((err,con)=>{
-				if (err) {
-					reject(err);
-				}
-				con.query(queryString, nameVal, tableInput, col, val, 
-					function(err, result) {
-						con.release();
-						resolve(result);
-					});
-			})
-		});		
-	},
+	// 	//MELVIN'S NOTE: Why not search by name from the beginning? Fewer steps that way.
+	// 		//rework "selectMethodById" -> "select". Will get any val from any column.
+	// 			//regardless, code below is written as asked
+	// selectMethodByNameInCategory: (nameVal, tableInput, col, val)=>{
+	// 	var queryString = "SELECT ? FROM ?? WHERE ?? = ? ";
+	// 	return new Promise ((resolve,reject)=>{
+	// 		connection((err,con)=>{
+	// 			if (err) {
+	// 				reject(err);
+	// 			}
+	// 			con.query(queryString, nameVal, tableInput, col, val, 
+	// 				function(err, result) {
+	// 					con.release();
+	// 					resolve(result);
+	// 				});
+	// 		})
+	// 	});		
+	// },
 
 
 	//section below should be finetuned once auth complete
@@ -169,6 +165,8 @@ var orm = {
 	//test will check result is a number, and if given an invalid id, like 45678, returns false
 	//MELVIN'S NOTE: getLikesForMethod does the same thing, of which is already a redundant function
 		//in it of itself. 
+
+//REDUNDANT(?)vvv==============================================================================		
 	getDislikesForMethod: (dislikeVal, dislikeCol, tableInput, col, val)=>{
 		var queryString = "SELECT ? OF ?? FROM ?? WHERE ?? = ? ";
 		return new Promise ((resolve,reject)=>{
@@ -184,10 +182,16 @@ var orm = {
 			})
 		});		
 	},
+//REDUNDANT(?)^^^==============================================================================
 
 	//adds one to the current value of likes for this method, in the db
 	//this should return a promise
 	//test for result is number, false if invalid id
+
+	//MELVIN'S NOTE: think Facebook. One user like, total count goes up one. user unlikes,
+	//total count goes down one. Should "update" like CatsApp Sleepy or Awake (boolean), not
+	//"add cat", where you create a new cat. Therefore, only one function should exist.
+	//```updateStatusForMethod:```, where the argument that change is column "like" or "dislike"
 	postLikeForMethod: methodId=>{
 
 	},
