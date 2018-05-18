@@ -14,7 +14,7 @@ router.get('/logout', (req,res)=>{
     res.send('logging out');
 });
 // auth with github
-router.get('/github', passport.authenticate('github', {scope: ['profile', 'email']}));
+router.get('/github', passport.authenticate('github', {scope: ['profile', 'user:email']}));
 
 router.get('/signin/callback', passport.authenticate('github'), (req,res)=>{
     res.send('reached callback');

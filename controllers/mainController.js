@@ -1,22 +1,22 @@
 var express = require("express");
 var router = express.Router();
-const connection = require('../config/connection');
-const orm = require('../config/orm');
-//Import the model (method.js) to use its database functions
-var method = require("../models/method");
-// var users =	require("../models/method.js");
-// var comments = require("../models/method.js");
-// var replies =require("../models/method.js");
 
-//methodController
-//==============================================
-	//router.get "method of the day" (random)
-		//Could also be used to random get ANOTHER method, but val must be random
-	// router.get("/", function(req,res) {
-	// 	res.render('home');
-	// });
+const db = require('../models')
+
 	router.get('/', (req,res)=>{
-		res.render('home');
+		// results = db.Method.findAll({
+  // 			attributes: [[sequelize.fn('COUNT')]]
+		// });
+
+		db.method.findAll().then(result=>{
+			//select a random one from the result and send
+			console.log(result[Math.floor((Math.random() * (result.length + 1)))]);
+			res.render('method', result[Math.floor((Math.random() * (result.length + 1)))]);
+		})
+		.catch(e=>{
+			if(e) throw e;
+		});
+
 	})
 
 //API
