@@ -41,11 +41,38 @@ const db = require('../models');
 
 //API
 //==============================================
-	router.get("/methods/:request", function(req,res) {
-		
-		
-		
+	router.get("/api/all", function(req,res) {
+		db.method.findAll()
+
+		.then(result=>{
+			res.json(result);
+		})
+
+		.catch(e=>{
+
+		});
 	});
+
+
+	router.get("/api/categories", function(req,res) {
+		db.method.aggregate('category', 'DISTINCT', { plain: false })
+
+		.then(result=>{
+			var categoryArray = []
+			
+			result.forEach(cat=>{
+				categoryArray.push(cat.DISTINCT);
+			});
+
+			res.json(categoryArray);
+		})
+
+		.catch(e=>{
+
+		});
+	});
+
+
 
 
 //==============================================
