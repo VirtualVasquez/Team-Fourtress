@@ -20,7 +20,11 @@ nav {
  padding: 0 0 0 15px;
 }
 
-
+#likeSpan, #dislikeSpan {
+  font-size: 26px;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px black;
+}
 
 nav .brand-logo {
     position: center;
@@ -109,6 +113,7 @@ nav .brand-logo {
 
 .method-title {
   color: #fafafa;
+  text-shadow: 2px 2px black;
 }
 
 main {
