@@ -27,16 +27,27 @@ $(function() {
 	});
 
   $("#likes").on("click", function(event) {
-    $.post("/method/like", {id:40}, function(data){
+    $.post("/method/like", function(data){
    //handle data in here
     });
   })
 
   $("#dislikes").on("click", function(event) {
-    $.post("/method/dislike", {id:40}, function(data){
+    $.post("/method/dislike", {id: $(this).data("id")}, function(data){
+      console.log(data);
+      $("#dislikeSpan").text(data.dislikes);
    //handle data in here
     });
   })
+
+  $("#likes").on("click", function(event) {
+    $.post("/method/like", {id: $(this).data("id")}, function(data){
+      console.log(data);
+      $("#likeSpan").text(data.likes);
+   //handle data in here
+    });
+  })
+
 
 });
 

@@ -5,15 +5,15 @@
           <div class="col s12 m6 offset-m3">
               <div class="card card-content transparent">
 
-                <span><button type="button" class="blue-grey btn" id="likes">
+                <span><button type="button" class="blue-grey btn" id="likes" data-id="{{id}}">
                   <i class="far fa-thumbs-up"></i>
-                </button>#{{likes}}</span>
+                </button><span id="likeSpan">&nbsp;{{likes}}</span></span>
 
                 <h1 class="method-title">{{name}}(&nbsp;&nbsp;)</h1>
                 
-                <span><button type="button" class="blue-grey btn" id="dislikes">
+                <span><button type="button" class="blue-grey btn" id="dislikes"  data-id="{{id}}">
                   <i class="far fa-thumbs-down"></i>
-                </button>#{{dislikes}}</span>
+                </button><span id="dislikeSpan">&nbsp;{{dislikes}}</span></span>
 
                 <div>
                 <span><button type="button" class="blue-grey btn" id="newMethod">
@@ -84,8 +84,8 @@
         <div class="col s12 m6 offset-m3">
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
-                <span class="card-title">Text Examples</span>
-                <p><a href="{{examples.demoUrl}}">{{examples.demoUrl}}</a></p>
+                <span class="card-title">Example</span>
+                <iframe src="{{examples.demoUrl}}" style="height:500px;width:100%;"></iframe>
               </div>
             </div>
           </div>

@@ -80,6 +80,7 @@ const db = require('../models');
 	});
 
 
+	//next
 	router.post('/next', (req,res)=>{
 
 		db.method.findAll().then(result=>{
@@ -102,6 +103,46 @@ const db = require('../models');
 
 	});
 
+	//like or dislike
+	router.post('/method/:opinion', (req,res)=>{
+
+		var query = {};
+		var currentId = req.body.id;
+		
+
+		if(req.params.opinion === 'dislike'){
+			query.dislikes = db.sequelize.literal(`dislikes + 1`);
+		} else if (req.params.opinion === 'like'){
+			query.likes = db.sequelize.literal(`likes + 1`);
+		}
+
+		console.log(req.params.opinion);
+		db.method.update(query, 
+		{ 
+			where: { id: currentId } 
+		})
+
+		.then(result=>{
+
+			db.method.findOne({
+					where: {id: currentId}
+				}).then(resultMethod=>{
+					res.send(resultMethod.dataValues);
+				});
+			
+		})
+
+
+		// 
+		.catch(e=>{
+			
+			if(e) throw e;
+
+		});
+		
+
+	});
+
 //API
 //==============================================
 	router.get("/methods/:request", function(req,res) {
@@ -115,4 +156,3 @@ const db = require('../models');
 
 // Export routes for server.js to use.
 module.exports = router;
-
