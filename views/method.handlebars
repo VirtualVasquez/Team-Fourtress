@@ -4,14 +4,24 @@
           
           <div class="col s12 m6 offset-m3">
               <div class="card card-content transparent">
-               <i class="far fa-thumbs-up" id="likes">#{{likes}}</i>
-                          {{!-- current object.category --}}
+
+                <span><button type="button" class="blue-grey btn" id="likes">
+                  <i class="far fa-thumbs-up"></i>
+                </button>#{{likes}}</span>
+
                <h1 class="method-title">{{name}}(&nbsp;&nbsp;)</h1>
-               <i class="far fa-thumbs-down" id="dislikes">#{{dislikes}}</i>
+
+                <span><button type="button" class="blue-grey btn" id="dislikes">
+                  <i class="far fa-thumbs-down"></i>
+                </button>#{{dislikes}}</span>
+              
+                <button type="button" class="blue-grey btn" id="newMethod">
+                  Generate a New Method
+                </button>
+
               </div>
           </div>         
         </div>
-        <span id="next">?&gt;</span>
       </div>
 <!--Test change for Git hub, ignore this comment-->
 <div class="row">
