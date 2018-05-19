@@ -23,7 +23,7 @@ nav {
 
 
 nav .brand-logo {
-    position: absolute;
+    position: center;
     color: #BF982C;
     display: inline-block;
     font-size: 6rem;
