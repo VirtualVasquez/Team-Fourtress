@@ -102,6 +102,33 @@ const db = require('../models');
 
 	});
 
+	router.post('/method/:opinion', (req,res)=>{
+
+		query = {};
+
+		
+
+		if(req.params.opinion === 'dislike'){
+			query.dislikes = db.sequelize.literal(`dislikes + 1`);
+		} else if (req.params.opinion === 'like'){
+			query.likes = db.sequelize.literal(`likes + 1`);
+		}
+
+		console.log(req.params.opinion);
+		db.method.update(query, 
+		{ where: 
+			{ id: req.body.id } 
+		})
+		// 
+		.catch(e=>{
+			
+			if(e) throw e;
+
+		});
+		
+
+	});
+
 //API
 //==============================================
 	router.get("/methods/:request", function(req,res) {
