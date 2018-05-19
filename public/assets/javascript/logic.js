@@ -12,3 +12,9 @@ $('#command').focusout(function(){
     'font-size': '20px'
   });
 });
+
+$(function() {
+	$("#likes").on("click", function(event) {
+		
+	})
+}
