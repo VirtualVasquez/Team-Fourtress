@@ -24,7 +24,7 @@ const db = require('../models');
 			//this is an object of ONLY our DB data
 			var cleanOutput = parseDbOutput(selected.dataValues);
 
-			console.log(selected.dataValues);
+			// console.log(selected.dataValues);
 			res.render('method', cleanOutput);
 		})
 		.catch(e=>{
