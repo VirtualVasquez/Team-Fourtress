@@ -4,15 +4,14 @@ const GithubStrategy = require('passport-github');
 
 require('dotenv').config();
 
-// passport.use(
-//     new GithubStrategy({
-//         //options for github strat
-//         clientID: process.env.GH_ID,
-//         clientSecret: process.env.GH_SECRET,
-//         callbackURL: process.env.GH_CB
-//     }, (accessToken, refreshToken, profile, done)=>{
-//         var aUser = new User(profile.displayName, profile.username, profile.id, profile.profileUrl, profile._json.email);
-//         console.log(aUser);
-//         console.log('passport callback fired');
-//     })
-// )
+passport.use(
+    new GithubStrategy({
+        //options for github strat
+        clientID: process.env.GH_ID,
+        clientSecret: process.env.GH_SECRET,
+        callbackURL: process.env.GH_CB
+    }, (accessToken, refreshToken, profile, done)=>{
+        console.log(profile);
+        console.log('passport callback fired');
+    })
+)

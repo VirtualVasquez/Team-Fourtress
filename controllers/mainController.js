@@ -104,8 +104,8 @@ const db = require('../models');
 
 	router.post('/method/:opinion', (req,res)=>{
 
-		query = {};
-
+		var query = {};
+		var currentId = req.body.id;
 		
 
 		if(req.params.opinion === 'dislike'){
@@ -116,9 +116,21 @@ const db = require('../models');
 
 		console.log(req.params.opinion);
 		db.method.update(query, 
-		{ where: 
-			{ id: req.body.id } 
+		{ 
+			where: { id: currentId } 
 		})
+
+		.then(result=>{
+
+			db.method.findOne({
+					where: {id: currentId}
+				}).then(resultMethod=>{
+					res.send(resultMethod.dataValues);
+				});
+			
+		})
+
+
 		// 
 		.catch(e=>{
 			
