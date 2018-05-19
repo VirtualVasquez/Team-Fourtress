@@ -53,11 +53,7 @@ var getRandom = (res)=>{
 const db = require('../models');
 
 	
-	router.get('/category', (req,res)=>{
-
-		
-
-	});
+	
 
 	router.get('/', (req,res)=>{
 
