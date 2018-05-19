@@ -2,11 +2,36 @@ var express = require("express");
 var router = express.Router();
 
 var parseDbOutput = (obj)=>{
-	obj.parameters = JSON.parse(obj.parameters);
-	obj.description = JSON.parse(obj.description);
-	obj.description2 = JSON.parse(obj.description2);
-	obj.examples = JSON.parse(obj.examples);
-	obj.tags = JSON.parse(obj.tags);
+	console.log(obj);
+	try{
+		obj.parameters = JSON.parse(obj.parameters);
+	} catch(e){
+		obj.parameters = [];
+	}
+
+	try{
+		obj.description = JSON.parse(obj.description);
+	}catch(e){
+		obj.description = ['Description unavailable'];
+	}
+
+	try{
+		obj.description2 = JSON.parse(obj.description2);
+	}catch(e){
+		obj.description2 = [];
+	}
+	
+	try{
+		obj.examples = JSON.parse(obj.examples);
+	}catch(e){
+		obj.examples = ['Example unavailable'];
+	}
+	
+	try{
+		obj.tags = JSON.parse(obj.tags);
+	}catch(e){
+		obj.tags = [];
+	}
 
 	return obj;
 }
@@ -29,12 +54,50 @@ const db = require('../models');
 		})
 		.catch(e=>{
 			if(e) throw e;
+
 		});
 
 	});
 
-	router.post('/search', (req,res)=>{
 
+	router.get('/method/:id', (req,res)=>{
+
+		db.method.findOne({where: {id: req.params.id}}).then(result=>{
+			
+	
+			//this is an object of ONLY our DB data
+			var cleanOutput = parseDbOutput(result.dataValues);
+
+			// console.log(selected.dataValues);
+			res.render('method', cleanOutput);
+		})
+		.catch(e=>{
+			// res.redirect('/');
+			if(e) throw e;
+
+		});
+
+	});
+
+
+	router.post('/next', (req,res)=>{
+
+		db.method.findAll().then(result=>{
+			//select a random one from the result and send
+			//this is a sequelize response obj
+			var selected = result[Math.floor((Math.random() * (result.length + 1)))];
+			
+			//this is an object of ONLY our DB data
+			var cleanOutput = parseDbOutput(selected.dataValues);
+
+			// console.log(selected.dataValues);
+			res.send(cleanOutput);
+		})
+		.catch(e=>{
+			
+			if(e) throw e;
+
+		});
 		
 
 	});
