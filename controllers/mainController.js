@@ -59,8 +59,13 @@ const db = require('../models');
 
 	});
 
+	router.post('/search', (req,res)=>{
+
+		
+
 
 	router.get('/method/:id', (req,res)=>{
+
 
 		db.method.findOne({where: {id: req.params.id}}).then(result=>{
 			
@@ -109,6 +114,17 @@ const db = require('../models');
 		
 		
 	});
+
+
+
+//API
+//==============================================
+	router.get("/methods/:request", function(req,res) {
+		
+		
+		
+	});
+
 
 
 //==============================================
