@@ -15,10 +15,6 @@ body {
   
 }
 
-nav {
- background-color: #424242;
- padding: 0 0 0 15px;
-}
 
 #likeSpan, #dislikeSpan {
   font-size: 26px;
@@ -26,12 +22,15 @@ nav {
   text-shadow: 2px 2px black;
 }
 
-nav .brand-logo {
+div.brand-logo {
+   background-color: #424242;
     position: center;
+    text-align: center;
     color: #BF982C;
     display: inline-block;
     font-size: 6rem;
-    padding: 10px 0 0 36%;
+    padding-bottom: 2%;
+    width: 100%;
 }
 
 #pages {
@@ -94,6 +93,7 @@ nav .brand-logo {
 
 #main-header {
   color: #fafafa;
+  position: center;
 }
 
 #thumbs-up{
@@ -114,6 +114,7 @@ nav .brand-logo {
 .method-title {
   color: #fafafa;
   text-shadow: 2px 2px black;
+  padding-bottom: 2%;
 }
 
 main {

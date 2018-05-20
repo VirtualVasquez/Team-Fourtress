@@ -16,3 +16,5 @@ require('dotenv').config();
 //         console.log('passport callback fired');
 //     })
 // )
+
+//Would like to revisit in the future to implement OAuth
